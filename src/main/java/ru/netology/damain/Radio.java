@@ -28,7 +28,7 @@ public class Radio {
     }
 
     public void next(int station) {
-        if (station >= 9) {
+        if (station >= maxStation) {
             this.station = 0;
             return;
         }
@@ -36,7 +36,7 @@ public class Radio {
     }
 
     public void prev(int station) {
-        if (station <= 0) {
+        if (station <= minStation) {
             this.station = 9;
             return;
         }
