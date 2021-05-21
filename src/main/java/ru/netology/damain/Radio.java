@@ -22,12 +22,12 @@ public class Radio {
         this.station = station;
     }
 
-    public int getMaxStation() {
-        return maxStation;
-    }
-
     public int getMinStation() {
         return minStation;
+    }
+
+    public int getMaxStation() {
+        return maxStation;
     }
 
     public void next() {
