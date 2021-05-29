@@ -2,11 +2,25 @@ package ru.netology.damain;
 
 public class Radio {
     private int station;
-    private int maxStation = 9;
+    private int maxStation = 10;
     private int minStation = 0;
     private int volume;
-    private int maxVolume = 10;
+    private int maxVolume = 100;
     private int minVolume = 0;
+
+    public Radio(int station, int maxStation) {
+        this.station = station;
+        this.maxStation = maxStation;
+    }
+
+    public Radio(int volume, int maxVolume, int minVolume) {
+        this.volume = volume;
+        this.maxVolume = maxVolume;
+        this.minVolume = minVolume;
+    }
+
+    public Radio() {
+    }
 
     public int getStation() {
         return station;

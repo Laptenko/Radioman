@@ -5,54 +5,43 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RadioTest {
 
     @Test
-    public void maxStation() {
+    public void maxStationDefolt() {
         Radio radio = new Radio();
-        assertEquals(9, radio.getMaxStation());
+        assertEquals(10, radio.getMaxStation());
     }
 
     @Test
-    public void minStation() {
+    public void minStationDefolt() {
         Radio radio = new Radio();
         assertEquals(0, radio.getMinStation());
     }
 
     @Test
     public void updateNextStation() {
-        Radio radio = new Radio();
-        radio.setStation(5);
+        Radio radio = new Radio(17, 54);
         radio.next();
-        assertEquals(6, radio.getStation());
-    }
-
-    @Test
-    public void updateLimitMaxStation() {
-        Radio radio = new Radio();
-        radio.setStation(9);
-        radio.next();
-        assertEquals(0, radio.getStation());
+        assertEquals(18, radio.getStation());
     }
 
     @Test
     public void updateOverMaxStation() {
-        Radio radio = new Radio();
-        radio.setStation(523);
+        Radio radio = new Radio(10,10);
+        radio.next();
         assertEquals(0, radio.getStation());
     }
 
     @Test
     public void updatePrevStation() {
-        Radio radio = new Radio();
-        radio.setStation(6);
+        Radio radio = new Radio(7,10);
         radio.prev();
-        assertEquals(5, radio.getStation());
+        assertEquals(6, radio.getStation());
     }
 
     @Test
     public void updateUnderLimitPrevStation() {
-        Radio radio = new Radio();
-        radio.setStation(0);
+        Radio radio = new Radio(0, 50);
         radio.prev();
-        assertEquals(9, radio.getStation());
+        assertEquals(50, radio.getStation());
     }
 
     @Test
@@ -65,7 +54,7 @@ public class RadioTest {
     @Test
     public void updateStationOverLimit() {
         Radio radio = new Radio();
-        radio.setStation(11);
+        radio.setStation(19);
         assertEquals(0, radio.getStation());
     }
 
@@ -78,32 +67,28 @@ public class RadioTest {
 
     @Test
     public void volumePlus() {
-        Radio radio = new Radio();
-        radio.setVolume(5);
+        Radio radio = new Radio(1,100,0);
         radio.plusVolume();
-        assertEquals(6, radio.getVolume());
+        assertEquals(2, radio.getVolume());
     }
 
     @Test
     public void volumeMinus() {
-        Radio radio = new Radio();
-        radio.setVolume(10);
+        Radio radio = new Radio(50,100,0);
         radio.minusVolume();
-        assertEquals(9, radio.getVolume());
+        assertEquals(49, radio.getVolume());
     }
 
     @Test
     public void volumePlusOverLimit() {
-        Radio radio = new Radio();
-        radio.setVolume(10);
+        Radio radio = new Radio(100,100,0);
         radio.plusVolume();
-        assertEquals(10, radio.getVolume());
+        assertEquals(100, radio.getVolume());
     }
 
     @Test
     public void volumeMinusOverLimit() {
-        Radio radio = new Radio();
-        radio.setStation(0);
+        Radio radio = new Radio(0,100,0);
         radio.minusVolume();
         assertEquals(0, radio.getVolume());
     }
@@ -111,7 +96,7 @@ public class RadioTest {
     @Test
     public void MaxVolume() {
         Radio radio = new Radio();
-        assertEquals(10, radio.getMaxVolume());
+        assertEquals(100, radio.getMaxVolume());
     }
 
     @Test
@@ -119,5 +104,14 @@ public class RadioTest {
         Radio radio = new Radio();
         assertEquals(0, radio.getMinVolume());
     }
+
+    @Test
+    public void showVolume(){
+        Radio radio = new Radio();
+        radio.setVolume(74);
+        assertEquals(74, radio.getVolume());
+    }
+
+
 
 }
